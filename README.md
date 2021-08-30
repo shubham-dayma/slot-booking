@@ -3,6 +3,7 @@ Simple program to book dynamic slots for events. It also validates requested slo
 
 ## API Doc
 https://documenter.getpostman.com/view/17006779/U16bwV1R
+
 Two APIs
 1. Retrive future events along with its defination
 2. Add dynamic slots with Email ID
