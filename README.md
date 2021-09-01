@@ -2,7 +2,7 @@
 Simple program to book dynamic slots for events. It also validates requested slots based on event's start on/off timings, along with any breaks that happens during the event.
 
 ## API Doc
-https://documenter.getpostman.com/view/17006779/U16bwV1R
+https://documenter.getpostman.com/view/17006779/U16dS9B5
 Two APIs
 1. Retrive future events along with its defination
 2. Add dynamic slots with Email ID

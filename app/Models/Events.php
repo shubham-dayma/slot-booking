@@ -30,18 +30,21 @@ class Events extends Model
         $self_obj = self::select(
                                 'events.available_seats',
                                 'events.min_minutes_before_start',
-                                'events.event_start_date',
+                                'events.max_days_future',
+                                'events.slot_duration',
                                 'event_timings.*'
                             );
         
         $self_obj->join('event_timings', function($q) use ($params)
         {
             $q->on('event_timings.event_id', 'events.id');
-            $q->where('event_timings.date', $params['slot_date']);
+            $q->where('event_timings.day', $params['slot_day']);
+            $q->where('event_timings.start_time', '!=', '00:00:00');
+            $q->where('event_timings.end_time', '!=', '00:00:00');
         });
 
         $self_obj->where('events.id', $params['event_id']);
         
-        return $self_obj->get();
+        return $self_obj->first();
     }
 }

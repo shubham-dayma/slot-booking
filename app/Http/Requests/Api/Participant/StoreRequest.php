@@ -12,6 +12,10 @@ use Illuminate\Http\Response;
 
 use\Illuminate\Http\Request;
 
+use App\Rules\EventAvailableForSelectedSlot;
+
+use App\Rules\ValidUserForEvent;
+
 class StoreRequest extends FormRequest
 {
     /**
@@ -22,13 +26,13 @@ class StoreRequest extends FormRequest
     */
     public function rules(Request $request) {
         return [            
-            'email' => 'required|email',
-            'first_name' => 'required',
-            'last_name'  => 'required',
-            'event_id'  => 'required',
-            'slot_date'  => 'required',
-            'slot_start_time'  => 'required',
-            'slot_end_time'  => 'required',
+            'first_name' => ['required'],
+            'last_name'  => ['required'],
+            'slot_date'  => ['required'],
+            'slot_start_time'  => ['required'],
+            'slot_end_time'  => ['required'],
+            'email' => ['required','email', new ValidUserForEvent($request->input())],
+            'event_id'  => ['required', new EventAvailableForSelectedSlot($request->input())],
         ];
     }
 

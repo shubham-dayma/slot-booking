@@ -1,0 +1,150 @@
+{
+	"info": {
+		"_postman_id": "f7c4b584-4ef3-4115-a723-43472d235724",
+		"name": "Slot Booking",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Event List",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI4IiwianRpIjoiZTY2NmRhZjkxNWJlMjUxYjk4NWUxNzc4Y2ZmNWQzYzNkZWU2OWY5OWM3MTdhMmJiNjYwZTAxZTljMzRmYjhjZTMwYWI4OTdiZDRiZTUxMTUiLCJpYXQiOjE2Mjk4Njc0NzMsIm5iZiI6MTYyOTg2NzQ3MywiZXhwIjoxNjYxNDAzNDcyLCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.gqlCezK0K5uSViC2SAH06J4qOJDhAh4MXag0ZaoJWBadk4_IkxwpNjGSDpSK7E3kjo4jC38JauTe6qmMzOZCVugtv8rfmZ3_GsAHwKOyJrk1zYLtuwKtL1rgO2VR8VdT8QiOlPiOTX4DUzPX7FtcHL-Soi0Pou1rdxEuJcET1J6D6QlDwcWBriWpTfpuhFg5r1rrq_TmOCz4my4XM3lNm2QiwoZkQfdZhVKIv-y_TT9ex7T9lwbilycWpH36V8NUzBL_5yMsU3MxrrLa5zpZKoyMbih5VPvlgVZtpI_afGjtn1go8poISdfbBJVDFWEnoewax_lB2ru2NhBoohbMm0LhT6gaBpUuX5tCJDxyqEV-YEowH1xinZBCT6A7CrpfwwT0umje1oJbbuK_-4YbjCo2TB16KtjFbwlbblF88mhGdr3oSa6mXpca5c0zwfryq3hwxL7yi7yYt51DRKJ1o4QBVgmtmuwQWj2jtyYyt1rw3shtpzOrXPI5t2TRJfa-k1ueJfKT0-p2j_rDXPktjRzi9gQXK-DNhUubnnNX_hCCBMR7DBYdQR6f2wvqVCmBs-p-slvCnu8M4w3r8UKhMFudJ4Jgzusdd1E8WZ7Evv32oU9d5-3sHnnlfS0NvoJGVn6pscG0jS3hOvYBmo-tSsZ8xggdtBhUu92KjckjEmI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "product_id",
+							"value": "210",
+							"type": "text"
+						},
+						{
+							"key": "barcode_id",
+							"value": "273",
+							"type": "text"
+						},
+						{
+							"key": "warehouse_id",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "location_id",
+							"value": "514",
+							"type": "text"
+						},
+						{
+							"key": "qty",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "case_total_boxes",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "case_qty_per_box",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "case_type",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/slot-booking/public/api/event-list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"slot-booking",
+						"public",
+						"api",
+						"event-list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Participants",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "event_id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "test@tes",
+							"type": "text"
+						},
+						{
+							"key": "first_name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "slot_start_time",
+							"value": "12:00:00",
+							"type": "text"
+						},
+						{
+							"key": "slot_end_time",
+							"value": "13:00:00",
+							"type": "text"
+						},
+						{
+							"key": "slot_date",
+							"value": "2021-08-31",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/slot-booking/public/api/add-participant",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"slot-booking",
+						"public",
+						"api",
+						"add-participant"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
