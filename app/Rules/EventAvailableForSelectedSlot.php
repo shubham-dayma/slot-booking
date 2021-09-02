@@ -8,6 +8,8 @@ use \App\Models\Events;
 
 use Carbon\Carbon;
 
+use Carbon\CarbonPeriod;
+
 class EventAvailableForSelectedSlot implements Rule
 {
     protected $request_inputs = array();
@@ -131,27 +133,30 @@ class EventAvailableForSelectedSlot implements Rule
                 }
             }
 
-            // check weather slot is selected in break hours
-            if(empty($this->error_message))
-            {
-                if(
-                    ($event_details->break_start_time <= $this->request_inputs['slot_start_time'] && $event_details->break_end_time > $this->request_inputs['slot_start_time'])
-                    || ($event_details->break_start_time < $this->request_inputs['slot_end_time'] && $event_details->break_end_time >= $this->request_inputs['slot_end_time'])
-                    || ($event_details->break_start_time > $this->request_inputs['slot_start_time'] && $event_details->break_end_time < $this->request_inputs['slot_end_time'])
-                )
-                {
-                    $this->error_message = 'You have selected slot in break hours.';
-                }
-            }
-
             // check if slot is valid
             if(empty($this->error_message))
             {
-                if($start_time->format('i') % $event_details->slot_duration > 0 
-                    || $start_time->format('i') % $event_details->slot_duration > 0
-                )
+                // for create use 24 hours format later change format 
+                $period = new CarbonPeriod($event_details->start_time, $event_details->slot_duration.' minutes', $event_details->end_time); 
+                
+                $slots = [];
+                
+                foreach($period as $item)
                 {
-                    $this->error_message = 'Please select a valid slot.';
+                    $slot = $item->format("H:i:s");
+                    
+                    // save slots which not comes in break hours
+                    if($event_details->break_start_time > $slot  
+                        || $event_details->break_end_time <= $slot 
+                    )
+                    {
+                        $slots[] = $slot; 
+                    }
+                }
+
+                if(!in_array($this->request_inputs['slot_start_time'], $slots))
+                {
+                    $this->error_message = 'Invalid slot selected';
                 }
             }
             

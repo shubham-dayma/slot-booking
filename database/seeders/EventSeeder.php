@@ -1,8 +1,10 @@
 <?php
 namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
-use Carbon\CarbonPeriod;
+
 use App\Models\Events;
+
 use App\Models\EventTimings;
 
 class EventSeeder extends Seeder
@@ -30,7 +32,7 @@ class EventSeeder extends Seeder
                             'available_seats'=>'100',
                             'slot_duration'=>'2',
                             'max_days_future'=>'10',
-                            'min_minutes_before_start'=>'0'
+                            'min_minutes_before_start'=>'5'
                         );
 
         $events[] = array(
